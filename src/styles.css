@@ -1,0 +1,109 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* @import '~@angular/material/prebuilt-themes/indigo-pink.css'; */
+
+.component-name {
+  background-color: #1B1E28;
+}
+
+/* mat-select {
+  background-color: #1B1E28;
+}
+
+mat-label {
+  background-color: #1B1E28;
+}
+
+mat-form-field {
+  background-color: #1B1E28;
+} */
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+}
+
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #15191F;
+    color: white;
+    height: 100%;
+}
+
+.bodyContainer {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    /* border: 1px solid blue; */
+}
+
+
+/* Scrollbar style */
+
+/* Width */
+::-webkit-scrollbar {
+    width: 10px;
+    /* padding: 10px 0; */
+    /* margin: 10px 0; */
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.1);
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.20);
+    border-radius: 10px;
+    transition: 1s
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(136, 136, 136, 0.25)
+  }
+
+
+  app-project-placeholder {
+    width: 100%;
+}
+
+app-project-tasks {
+  width: 100%;
+}
+
+app-statistics {
+  width: 100%;
+}
+
+app-calendar {
+  width: 100%;
+}
+
+app-config {
+  width: 100%;
+}
+
+app-info {
+  width: 100%;
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: #0bbf35;
+}
+
+::selection {
+  color: white;
+  background: #0bbf35;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

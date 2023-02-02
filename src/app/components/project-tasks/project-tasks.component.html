@@ -1,0 +1,24 @@
+<app-add-task (onAddTask)="updateTasks($event)"></app-add-task>
+<div class="project-tasks-container">
+  <div class="tasks-header">
+    <div [@fadeInOut]>
+      <p class="project-title">{{ projectTitle }} ({{ projectId }})</p>
+      <p class="project-members">{{ projectMembers && projectMembers.length }} members</p>
+      <span [class.status-open]="project.status" [class.status-closed]="!project.status">{{ project.status ? 'Delivered' : 'In Progress' }}</span>
+      <span class="category-label">{{ project.category }}</span>
+    </div>
+    <button class="new-button" (click)="toggleNewTask()">+ New Task</button>
+  </div>
+  <div class="project-task-body">
+    <ng-container *ngIf="!tasks">
+      <div class="no-tasks">
+        <p>This project has no tasks yet.</p>
+      </div>
+    </ng-container>
+    <app-project-tasks-item
+      [@fadeInOut]
+      *ngFor="let task of tasks"
+      [task]="task"
+    ></app-project-tasks-item>
+  </div>
+</div>

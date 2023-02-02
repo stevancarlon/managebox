@@ -1,0 +1,22 @@
+<div class="items-container">
+  <div *ngFor="let project of projects">
+    <div
+      class="task-container"
+      [routerLink]="['/project/', project.id]"
+      *ngIf="category === project.category"
+      [ngStyle]="{'border': getBorder(project.category), 'border-left': getLeftBorder(project.category)}"
+    
+    >
+      <div>
+        <p>{{ project.title }}</p>
+        <p class="task-members">
+          {{ project.members && project.members.length }} members
+        </p>
+      </div>
+      <div class="task-info">
+        <p class="task-quantity" [ngStyle]="{'background-color': getColor(project.category), 'color': getTextColor(project.category)}">9</p>
+        <fa-icon [icon]="faEllipsisV"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

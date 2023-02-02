@@ -1,0 +1,19 @@
+<app-new-project (onAddProject)="addProject($event)"></app-new-project>
+<div class="projects-container">
+  <div class="search-container">
+    <fa-icon [icon]="faSearch" class="search-icon"></fa-icon
+    ><input type="text" placeholder="Search" class="search-input" />
+  </div>
+  <div class="projects-title-container">
+    <span class="project-title">Projects</span
+    ><button class="add-button" (click)="toggleForm()">+</button>
+  </div>
+  <div class="selectors">
+    <div class="selector-item selected">All</div>
+    <div class="selector-item">Open</div>
+    <div class="selector-item">Closed</div>
+  </div>
+  <div class="project-item-container">
+    <app-project-category-list [projects]="projects"></app-project-category-list>
+  </div>
+</div>

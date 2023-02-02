@@ -1,0 +1,4 @@
+<div *ngFor="let category of categories_list; let i = index">
+    <p class="category">{{ category }} </p>
+    <app-project-item [category]="category" [projects]="projects"></app-project-item>
+</div>

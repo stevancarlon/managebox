@@ -1,0 +1,43 @@
+.task-category {
+    color: rgba(255, 255, 255, 0.50);
+    margin: 20px 0;
+}
+
+.task-container {
+    border: 1px solid #20C0F7;
+    border-left: 4px solid #0BBF35;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.task-members {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.task-quantity {
+    background-color: #193E2D;
+    color: #91770c;
+    /* color: #60bede; */
+    padding: 5px 10px; 
+    border-radius: 5px;
+    font-weight: 600;
+    
+}
+
+.items-container {
+    margin-bottom: 25px;
+    /* border: 1px solid red; */
+}

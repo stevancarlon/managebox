@@ -1,0 +1,22 @@
+<div class="task-container">
+    <div class="task-date">
+      <p class="icon-date"><fa-icon [icon]="faClock"></fa-icon>{{ task.date }}</p>
+      <fa-icon [icon]="faEllipsisV" class="more-icon"></fa-icon>
+    </div>
+    <p class="task-title">{{ task.title }}</p>
+    <div class="flex-task-tags">
+    <span [class.task-delivered]="!task.status" [class.task-in-progress]="task.status">{{ task.status ? 'In progress' : 'Delivered' }}</span>
+  </div>
+    <div class="members-flex">
+      <div class="member-icon">PY</div>
+      <div class="member-icon">LP</div>
+      <div class="add-member">+</div>
+    </div>
+    <p class="task-details">Details:</p>
+    <p class="task-details-content">
+      {{ task.details }}
+    </p>
+    <p class="task-details">Attachments</p>
+    <div class="attach-flex"><p class="attach-content"><fa-icon [icon]="faPaperclip" class="paperclip-icon"></fa-icon>project_details.pdf</p><p class="file-size">10.1 MB</p></div>
+    <div class="attach-flex"><p class="attach-content"><fa-icon [icon]="faPaperclip" class="paperclip-icon"></fa-icon>project_details.pdf</p><p class="file-size">10.1 MB</p></div>
+  </div>

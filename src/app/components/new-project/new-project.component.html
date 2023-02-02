@@ -1,0 +1,51 @@
+<div class="modal-background" [class.show]="showAddProject" >
+<form class="new-project" [class.show]="showAddProject" (ngSubmit)="onSubmit()">
+  <div class="input-flex">
+    <p class="new-project-title">Create new project</p>
+    <div class="title-date-flex">
+      <div class="label-input-flex">
+        <p class="input-label">Title:</p>
+        <input placeholder="Enter the title" name="title" [(ngModel)]="title" />
+      </div>
+      <div class="label-input-flex">
+        <p class="input-label">Date:</p>
+        <input placeholder="Select the ending date" name="date" [(ngModel)]="date"/>
+      </div>
+    </div>
+    <div class="label-input-flex">
+      <p class="input-label">Description:</p>
+      <textarea placeholder="Describe your project" name="description" [(ngModel)]="description"></textarea>
+    </div>
+    <div class="label-input-flex select-category">
+      <p class="input-label">Category:</p>
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <mat-select [panelClass]="'component-name logger'" name="category" [(ngModel)]="category">
+          <mat-option [value]="''" disabled>---</mat-option>
+          <mat-option value="Software">Software</mat-option>
+          <mat-option value="Design">Design</mat-option>
+          <mat-option value="Administration">Administration</mat-option>
+          <mat-option value="Marketing">Marketing</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+    </div>
+    <div class="label-input-flex">
+      <mat-form-field>
+        <mat-label>Members</mat-label>
+        <mat-select multiple [panelClass]="'component-name logger'" name="members" [(ngModel)]="members">
+          <mat-option [value]="''" disabled>---</mat-option>
+          <mat-option value="Mark">Mark</mat-option>
+          <mat-option value="John">John</mat-option>
+          <mat-option value="Luke">Luke</mat-option>
+          <mat-option value="Peter">Peter</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="new-project-buttons">
+    <button type="submit" class="create-button" (click)="toggleForm()">Create</button>
+    <button type="reset" class="cancel-button" (click)="toggleForm()">Cancel</button>
+  </div>
+</form>
+</div>

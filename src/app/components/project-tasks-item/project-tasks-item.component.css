@@ -1,0 +1,154 @@
+.project-tasks-container {
+    display: flex;
+    flex-direction: column;
+    padding: 60px;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-button {
+    background-color: #0BBF35;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: 100;
+    align-self: center;
+}
+
+.project-members {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.50);
+}
+
+.project-title {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.project-task-body {
+    margin-top: 60px;
+}
+
+.task-container {
+    background-color: #1B1E28;
+    padding: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.task-date {
+    font-size: 15px;
+    color:rgba(255, 255, 255, 0.50);
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-title {
+    font-weight: 600;
+    font-size: 30px;
+    margin: 10px 0;
+}
+
+.more-icon {
+    cursor: pointer;
+}
+
+.task-details {
+    font-size: 600;
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+.members-flex {
+    display: flex;
+    gap: 10px;
+}
+
+.member-icon {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-member {
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    border: 3px dotted rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-date {
+    display: flex;
+    gap: 10px;
+}
+
+.task-details-content {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.attach-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paperclip-icon {
+    color: #0BBF35;
+}
+
+.attach-content {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.file-size {
+    color: rgba(255, 255, 255, 0.5);
+
+}
+
+.flex-task-tags {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.task-delivered {
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* background-color: #0BBF35; */
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+.task-in-progress {
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    /* background-color: #E2B422; */
+    font-size: 12px;
+    cursor: pointer;
+}
