@@ -1,11 +1,15 @@
 .stat-container {
     width: 100%;
+    /* height: 100%; */
     height: 100%;
-    /* border: 1px solid red; */
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     padding: 60px;
     flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-color: #474950 #31343D;
+    scrollbar-width: thin;
+    /* border: 1px solid red; */
 }
 
 .stat-box {
@@ -17,10 +21,44 @@
     align-items: center;
     padding: 60px;
     border-radius: 5px;
-    height:100%;
+    height: auto;
 }
 
 .stat-title {
     font-weight: 500;
     font-size: 30px;
+}
+
+.fa-calendar-icon {
+    color: #0BBF35;
+    font-size: 25px;
+}
+
+.calendar-style {
+    width: 100%;
+    /* border: 1px solid red; */
+    height: 100%;
+}
+
+.page-description {
+    color:rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    margin-bottom: -30px;
+}
+
+@media (max-width: 440px) {
+    .stat-container {
+        padding: 0;
+        margin: 0;
+        padding: 20px;
+        /* margin-top: 60px; */
+        padding-top: 60px;    }
+
+    .stat-box {
+        padding: 20px;
+    }
+
+    .calendar-style {
+        height: 450px;
+    }
 }

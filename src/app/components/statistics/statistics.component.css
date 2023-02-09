@@ -1,26 +1,104 @@
 .stat-container {
     width: 100%;
     height: 100%;
-    /* border: 1px solid red; */
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 60px;
     flex-direction: column;
+    overflow-y: scroll;
+    /* border: 1px solid red; */
+    scrollbar-color: #474950 #31343D;
+    scrollbar-width: thin;
+    
 }
 
 .stat-box {
     margin-top: 60px;
     background-color: #1B1E28;
     display:flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     padding: 60px;
+    /* padding-left: 0px; */
     border-radius: 5px;
-    height:100%;
+    /* height:100%; */
+    flex-wrap: wrap;
+    gap: 10px;
+    /* overflow: auto; */
+    position:relative;
+    
 }
 
 .stat-title {
     font-weight: 500;
     font-size: 30px;
+}
+
+.sector-container {
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform .2s;
+    position: relative;
+}
+
+.sector-container:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px 1px #12161f;
+    z-index: 1;
+}
+
+.stat-label {
+    text-align: center;
+    /* border-bottom: 3px solid #0BBF35; */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    /* cursor: pointer; */
+}
+
+.stat-label {
+    text-align: center;
+    /* border-bottom: 3px solid #0BBF35; */
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.no-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.fa-chart-icon {
+    color: #0bbf35;
+}
+
+.page-description {
+    color:rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    margin-bottom: -30px;
+}
+
+@media (max-width: 440px) {
+    .stat-container {
+        margin-top: 60px;
+        padding: 0;
+        padding: 20px;
+        margin-bottom: 60px;
+        /* background-color: aqua; */
+    }
+
+    .stat-box {
+        padding-top: 20px;
+        /* margin-bottom: 20px !important; */
+        margin-bottom: 60px;
+    }
+
+
 }

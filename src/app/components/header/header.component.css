@@ -7,6 +7,8 @@ header {
     padding: 10px;
     border-right: 2px solid rgba(255, 255, 255, 0.1);
     /* overflow: scroll; */
+    z-index: 99999;
+    /* overflow: visible; */
 }
 
 .logo-container {
@@ -49,6 +51,15 @@ header {
     color: #0BBF35;
 }
 
+.menu-item-activated {
+    background-color: #193E2D;
+    color: #0BBF35;
+}
+
+.menu-item-activated .menu-item-icon {
+    color: #0BBF35;
+}
+
 .menu-item-icon {
     color: rgba(255, 255, 255, 0.25)
 }
@@ -59,6 +70,47 @@ header {
     align-items: center;
     padding: 10px;
     cursor: pointer;
+    z-index: 1004;
+}
+
+.more-dropbox {
+    position: absolute;
+    bottom:0;
+    background-color: #32353E;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.40);
+    left: 40px;
+    padding: 5px 5px;
+    /* width: 100px; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    /* text-align: center; */
+    box-shadow: 2px 2px 5px rgba(2, 3, 14, 0.7);
+    visibility: hidden;
+    transition: all 0.2s ease-in;
+    opacity: 0;
+    z-index: 9999 !important;
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
+    z-index: 9999;
+}
+
+.more-dropbox-item {
+    /* border: 1px solid red; */
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.more-dropbox-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* color: white; */
+    border-radius: 5px;
 }
 
 .menu-info-item {
@@ -66,7 +118,12 @@ header {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 5px;
+    position: relative;
+    /* z-index: 999; */
+    /* z-index: 9999; */
 }
+
+
 
 .menu-info-item:hover {
     background-color: #193E2D;
@@ -77,5 +134,83 @@ header {
 }
 
 .menu-info-item:hover .menu-info-icon {
-    color: #0BBF35
+    color: #0BBF35;
+}
+
+
+
+.toggle-header {
+    display:none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* border: 1px solid red; */
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    display: none;
+    align-items: center;
+    background-color: #1B1E28;
+    
+}
+
+.toggle-header button {
+    background-color: transparent;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+
+}
+
+.leftBarIcon {
+    font-size: 25px;
+    display:none;
+}
+
+.nav-bar-logo {
+    display:none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media (max-width: 770px) {
+
+    .nav-bar-logo {
+        width: 120px;
+        display: block;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .leftBarIcon {
+        display: block;
+    }
+
+    header {
+        display: flex;
+        visibility: visible;
+        z-index: 1000;
+        position:absolute;
+
+    }
+
+    .showLeftMenu {
+        display: flex;
+        visibility: visible;
+        position: absolute;
+    }
+
+    .toggle-header {
+        display: flex;
+        padding-left: 15px;
+    }
+
+    .hideToggleHeader {
+        display: none;
+        visibility: hidden;
+    }
 }

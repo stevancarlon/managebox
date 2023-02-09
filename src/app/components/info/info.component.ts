@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-info',
@@ -15,5 +16,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   ]
 })
 export class InfoComponent {
+
+  faInfo = faExclamationCircle
 
 }

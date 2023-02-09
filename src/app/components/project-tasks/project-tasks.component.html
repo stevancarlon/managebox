@@ -1,24 +1,30 @@
 <app-add-task (onAddTask)="updateTasks($event)"></app-add-task>
+<app-edit-task (onEditTask)="updateProject($event)"></app-edit-task>
 <div class="project-tasks-container">
-  <div class="tasks-header">
+  <div class="tasks-header" *ngIf="project">
     <div [@fadeInOut]>
-      <p class="project-title">{{ projectTitle }} ({{ projectId }})</p>
+      <p class="project-title"><fa-icon [icon]="faThumbTack" class="fa-thumbtack-icon"></fa-icon> {{ projectTitle }} </p>
       <p class="project-members">{{ projectMembers && projectMembers.length }} members</p>
-      <span [class.status-open]="project.status" [class.status-closed]="!project.status">{{ project.status ? 'Delivered' : 'In Progress' }}</span>
+      <span class="category-label">{{ project.status ? 'In progress' : 'Delivered' }}</span>
       <span class="category-label">{{ project.category }}</span>
+      
     </div>
-    <button class="new-button" (click)="toggleNewTask()">+ New Task</button>
+    <button class="new-button" (click)="toggleNewTask()">+ Task</button>
   </div>
+  <p class="project-details">{{ project && project.description }}</p>
   <div class="project-task-body">
-    <ng-container *ngIf="!tasks">
-      <div class="no-tasks">
+    <ng-container *ngIf="tasks?.length === 0 || !tasks">
+      <div class="no-tasks" [@fadeInOut]>
         <p>This project has no tasks yet.</p>
       </div>
     </ng-container>
     <app-project-tasks-item
       [@fadeInOut]
-      *ngFor="let task of tasks"
+      *ngFor="let task of tasks; let i = index"
       [task]="task"
+      [i]="i"
+      (onDelete)="updateProject($event)"
+      (onUpdateProjectStatus)="updateProjectStatus($event)"
     ></app-project-tasks-item>
   </div>
 </div>

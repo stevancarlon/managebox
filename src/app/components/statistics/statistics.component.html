@@ -1,6 +1,66 @@
 <div [@fadeInOut] class="stat-container">
-    <p class="stat-title">Statistics</p>
-    <div class="stat-box">
-        <p>No statistics yet.</p>
+  <p class="stat-title"><fa-icon [icon]="faChartColumn" class="fa-chart-icon"></fa-icon> Statistics</p>
+  <!-- <p>{{ pieChartData.datasets[0].data[0] }}</p> -->
+  <!-- <p>{{ JSON.stringify() }}</p> -->
+  <p class="page-description">Visualize projects current status about every working sector.</p>
+  <div class="stat-box" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate" class="spinner-position"></mat-progress-spinner>
+  </div>
+  <div class="stat-box" *ngIf="!loading">
+    <!-- <p>No statistics yet.</p> -->
+    <div class="sector-container">
+      <p class="stat-label">Software</p>
+      <canvas
+        baseChart
+        [data]="pieChartDataObj[0]"
+        [labels]="pieChartLabels"
+        [type]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+      >
+      
+      </canvas>
+      <p class="no-data" *ngIf="pieChartDataObj[0].datasets[0].data[0] === 0 && pieChartDataObj[0].datasets[0].data[1] === 0">No data available.</p>
     </div>
+    <div class="sector-container">
+      <p class="stat-label">Design</p>
+      <canvas
+        baseChart
+        [data]="pieChartDataObj[1]"
+        [labels]="pieChartLabels"
+        [type]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+      >
+      </canvas>
+      <p class="no-data" *ngIf="pieChartDataObj[1].datasets[0].data[0] === 0 && pieChartDataObj[1].datasets[0].data[1] === 0">No data available.</p>
+    </div>
+    <div class="sector-container">
+      <p class="stat-label">Marketing</p>
+        <canvas
+          baseChart
+          [data]="pieChartDataObj[2]"
+          [labels]="pieChartLabels"
+          [type]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+        >
+        </canvas>
+        <p class="no-data" *ngIf="pieChartDataObj[2].datasets[0].data[0] === 0 && pieChartDataObj[2].datasets[0].data[1] === 0">No data available.</p>
+      </div>
+      <div class="sector-container">
+        <p class="stat-label">Administration</p>
+        <canvas
+          baseChart
+          [data]="pieChartDataObj[3]"
+          [labels]="pieChartLabels"
+          [type]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+        >
+        </canvas>
+        <p class="no-data" *ngIf="pieChartDataObj[3].datasets[0].data[0] === 0 && pieChartDataObj[3].datasets[0].data[1] === 0">No data available.</p>
+      </div>
+  </div>
+  <!-- <p>asdas</p> -->
 </div>

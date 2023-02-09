@@ -3,6 +3,7 @@ import { UiService } from 'src/app/service/ui.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/service/project.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-add-task',
@@ -17,19 +18,23 @@ export class AddTaskComponent implements OnInit {
   title!: string;
   date!: string;
   details!: string;
-  members!: string;
+  members: string[] = [];
   showAddProject!: boolean;
-  project!: any;
+  project: any = []
   tasks!: any;
+  isLoading = false
 
   constructor(
     private uiService: UiService,
     private route: ActivatedRoute,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private userService: UserService
   ) {
     this.subscription = this.uiService
       .onToggleAddTask()
       .subscribe((value) => (this.showAddTask = value));
+
+    
   }
 
   ngOnInit() {
@@ -52,25 +57,41 @@ export class AddTaskComponent implements OnInit {
 
   onSubmit() {
 
-    const task = {
-      title: this.title,
-      date: this.date,
-      details: this.details,
-      members: ['Paul', 'John']
-    }
+    // console.log(this.project.tasks.slice(-1))
+    this.isLoading = true
+    this.projectService.getSingleProject(this.projectId).subscribe(project => {
+      this.project = project
 
-    if (!this.project.tasks) {
-      this.project.tasks = [task]
-    } else {
-      this.project.tasks.push(task)
-    }
+      console.log(this.members)
 
-    console.log(this.project);
-    // Save it to the database
-    this.projectService.updateSingleProject(this.projectId, this.project).subscribe((result) => {
-      this.tasks = result.tasks
-      this.onAddTask.emit(result.tasks)
+      const task = {
+        id: !this.project.tasks || this.project.tasks?.length === 0 ? 0 : this.project.tasks.slice(-1)[0].id + 1,
+        title: this.title,
+        date: this.date,
+        details: this.details,
+        members: this.members,
+        status: true
+      }
+  
+      if (!this.project.tasks) {
+        this.project.tasks = [task]
+      } else {
+        this.project.tasks.push(task)
+      }
+  
+      console.log(this.project);
+      // Save it to the database
+      this.projectService.updateSingleProject(this.projectId, this.project).subscribe((result) => {
+        this.tasks = result.tasks
+        this.onAddTask.emit(result.tasks)
+      })
+      this.toggleForm();
+      this.isLoading = false
+  
+      this.title = ''
+      this.date = ''
+      this.details = ''
+
     })
-    this.toggleForm();
   }
 }

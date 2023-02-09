@@ -1,19 +1,83 @@
-<app-new-project (onAddProject)="addProject($event)"></app-new-project>
-<div class="projects-container">
-  <div class="search-container">
+<app-new-project
+  [newProjectLoading]="newProjectLoading"
+  (onAddProject)="addProject($event)"
+></app-new-project>
+<app-edit-project
+  [showEditProject]="showEditProject"
+  [projectToEdit]="projectToEdit"
+  (onToggle)="editProject($event)"
+></app-edit-project>
+<div class="projects-container" [@slide2]="showProjectList ? 'right' : 'left'">
+  <form class="search-container">
     <fa-icon [icon]="faSearch" class="search-icon"></fa-icon
-    ><input type="text" placeholder="Search" class="search-input" />
-  </div>
+    ><input
+      type="text"
+      placeholder="Search"
+      class="search-input"
+      name="search"
+      (keyup)="searchSubmit()"
+      (keydown)="searchSubmit()"
+      [(ngModel)]="search"
+    />
+  </form>
   <div class="projects-title-container">
     <span class="project-title">Projects</span
     ><button class="add-button" (click)="toggleForm()">+</button>
   </div>
   <div class="selectors">
-    <div class="selector-item selected">All</div>
-    <div class="selector-item">Open</div>
-    <div class="selector-item">Closed</div>
+    <div
+      class="selector-item"
+      [class.selected]="selected === 'all'"
+      (click)="changeLabel('all')"
+    >
+      All
+    </div>
+    <div
+      class="selector-item"
+      [class.selected]="selected === 'in-progress'"
+      (click)="changeLabel('in-progress')"
+    >
+      In progress
+    </div>
+    <div
+      class="selector-item"
+      [class.selected]="selected === 'delivered'"
+      (click)="changeLabel('delivered')"
+    >
+      Delivered
+    </div>
+    <div class="underline" [ngClass]="selected" [@slide]="selected"></div>
   </div>
+
   <div class="project-item-container">
-    <app-project-category-list [projects]="projects"></app-project-category-list>
+    <mat-progress-spinner
+      mode="indeterminate"
+      *ngIf="isLoading"
+      class="spinner-position"
+    ></mat-progress-spinner>
+    <p
+      [@fadeInOut]
+      class="no-projects"
+      *ngIf="categories_list.length === 0 && !isLoading"
+    >
+      There are no projects here.
+    </p>
+    <ng-container *ngIf="!isLoading">
+      <div
+        *ngFor="let category of categories_list; let i = index"
+        class="margin-top"
+      >
+        <p class="category">{{ category }}</p>
+        <app-project-item
+          *ngFor="let project of projects; let i = index"
+          [i]="i"
+          [project]="project"
+          [category]="category"
+          (onDelete)="updateProjects()"
+          (onUpdateProjectStatus)="updateProjectStatus($event)"
+          (onEditProject)="editProject($event)"
+        ></app-project-item>
+      </div>
+    </ng-container>
   </div>
 </div>

@@ -31,6 +31,10 @@ html, body {
     background-color: #15191F;
     color: white;
     height: 100%;
+    overflow: hidden;
+    /* border: 1px solid red; */
+    /* border: 1px solid red; */
+    /* position: relative; */
 }
 
 .bodyContainer {
@@ -94,6 +98,17 @@ app-info {
   width: 100%;
 }
 
+@media (max-width: 350px) {
+  app-project-tasks {
+    visibility: hidden;
+    overflow-x: hidden;
+  }
+}
+
+app-project-tasks {
+  height: 100vh;
+}
+
 ::-moz-selection { /* Code for Firefox */
   color: white;
   background: #0bbf35;
@@ -104,6 +119,104 @@ app-info {
   background: #0bbf35;
 }
 
+app-project-item {
+  margin: 0;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+app-profile {
+  width: 100%;
+}
+
+.fc .fc-col-header-cell-cushion {
+  display: inline-block;
+  padding: 2px 4px;
+  /* color: red; */
+}
+
+.fc-toolbar-title {
+  font-size: 20px !important;
+  /* color: red; */
+}
+
+.fc-toolbar-chunk {
+  /* border: 1px solid red; */
+  display: flex !important;
+
+}
+
+.fc-toolbar-chunk button {
+  background-color: #0bbf35 !important;
+  
+}
+
+.fc-toolbar-chunk button:hover {
+  background-color: #11a434 !important;
+}
+
+.fc-scrollgrid-sync-table {
+  /* border: 5px solid green !important; */
+  border-radius: 15px;
+  /* background-color: blue; */
+}
+
+.fc-scrollgrid-liquid {
+  /* border: 5px solid green !important; */
+  border-radius: 15px !important;
+  border: 1px solid white !important;
+
+}
+
+
+.fc-scrollgrid-liquid th {
+  /* border: 5px solid green !important; */
+  border: 0 !important;
+  border-bottom: 0.5px solid white !important;
+  overflow-y: hidden !important;
+}
+
+.fc-scrollgrid-liquid td {
+  border: 0 !important;
+  scrollbar-color: #474950 #31343D !important;
+  scrollbar-width: thin !important;
+}
+
+.fc-scroller  {
+  overflow: hidden !important;
+}
+
+.fc-event-title-container {
+  cursor: pointer !important;
+}
+
+app-header {
+  overflow: visible;
+  /* border: 1px solid red; */
+  z-index: 9999;
+}
+
+app-new-project {
+  z-index: 99999;
+}
+
+
+
+@media (max-width: 440px ){
+  
+  app-projects {
+    /* border: 1px solid red; */
+    /* position: relative; */
+    /* border-bottom: 10px solid green;
+    position: relative;
+    height: 100vh; */
+  }
+
+  app-calendar {
+    height: 100vh;
+    /* background-color: #11a434; */
+  }
+  
+}
+
+
+
+

@@ -1,22 +1,58 @@
-<div class="items-container">
-  <div *ngFor="let project of projects">
-    <div
-      class="task-container"
-      [routerLink]="['/project/', project.id]"
-      *ngIf="category === project.category"
-      [ngStyle]="{'border': getBorder(project.category), 'border-left': getLeftBorder(project.category)}"
-    
-    >
-      <div>
-        <p>{{ project.title }}</p>
-        <p class="task-members">
-          {{ project.members && project.members.length }} members
-        </p>
-      </div>
-      <div class="task-info">
-        <p class="task-quantity" [ngStyle]="{'background-color': getColor(project.category), 'color': getTextColor(project.category)}">9</p>
-        <fa-icon [icon]="faEllipsisV"></fa-icon>
+<!-- <div class="item-click-handler"> -->
+<div class="items-container" (click)="openProjectItem()">
+  <!-- <div (click)="debug()" class="item-click-handler"> -->
+    <div [@fadeInOut]>
+      <div
+        class="task-container"
+        [routerLink]="['/project/', project.id]"
+        [class.hoverAdm]="category === 'Administration'"
+        [class.hoverDesign]="category === 'Design'"
+        [class.hoverMark]="category === 'Marketing'"
+        *ngIf="category === project.category"
+        [ngStyle]="{
+          border: getBorder(project.category),
+          'border-left': getLeftBorder(project.category)
+        }"
+      >
+        <div>
+          <p>{{ project.title }}</p>
+          <p class="task-members">
+            {{ project.members && project.members.length }} members
+          </p>
+        </div>
+        <div class="task-info">
+          <p
+            class="task-quantity"
+            [ngStyle]="{
+              'background-color': getColor(project.category),
+              color: getTextColor(project.category)
+            }"
+          >
+            {{ project?.tasks ? project.tasks.length : 0 }}
+          </p>
+          <div
+            class="more-icon-container"
+            (click)="$event.stopPropagation(); moreFunction(i)"
+          >
+            <fa-icon [icon]="faEllipsisV"></fa-icon>
+            <div class="dropdown-container" [class.show]="selectedIndex === i">
+              <div class="dropdown-option" (click)="deleteProject(project.id)">
+                Delete
+              </div>
+              <div class="dropdown-option" (click)="editProject(project)">
+                Edit
+              </div>
+              <div
+                class="dropdown-option"
+                (click)="updateProjectStatus(project.id)"
+              >
+                {{ project.status ? "Deliver" : "Reactivate" }}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
+<!-- </div> -->

@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://localhost:5000/projects'
+  private apiUrl = 'http://192.168.2.110:3000/projects'
 
   constructor(private http:HttpClient) { }
 
@@ -25,6 +25,10 @@ export class ProjectService {
 
   addProject(project: Project): Observable<Project> {
     return this.http.post<Project>(this.apiUrl, project, httpOptions)
+  }
+
+  deleteProject(id: any): Observable<Project> {
+    return this.http.delete<Project>(`${this.apiUrl}/${id}`);
   }
 
   getSingleProject(id: any): Observable<Project> {
@@ -38,8 +42,15 @@ export class ProjectService {
   }
 
   updateSingleProject(id: any, project: any): Observable<Project>{
-    console.log('Attempting updateSingleProject at project.service')
+    // console.log('Attempting updateSingleProject at project.service')
     return this.http.put<Project>(`${this.apiUrl}/${id}`, project, httpOptions)
+  }
+
+  getProjectStatusChanges(id: any): Observable<any> {
+    return this.http.get<Project>(`${this.apiUrl}/${id}`)
+    .pipe(
+      map(project => project.status)
+    );
   }
 
 }

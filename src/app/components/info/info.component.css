@@ -24,3 +24,26 @@
     font-weight: 500;
     font-size: 30px;
 }
+
+.info-icon {
+    color: #0BBF35;
+    /* background-color: red; */
+    /* border: 3px solid blue; */
+    border-radius: 50%;
+}
+
+.stat-box a {
+    color: #0BBF35;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.stat-box a:hover {
+    color: #0eda3e;
+}
+
+.page-description {
+    color:rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    margin-bottom: -30px;
+}

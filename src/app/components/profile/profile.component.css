@@ -1,0 +1,129 @@
+.stat-container {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  overflow-y: scroll;
+  /* z-index: 1; */
+}
+
+.stat-box {
+  margin-top: 60px;
+  background-color: #1b1e28;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 5px;
+  height: 100%;
+  width: 50%;
+}
+
+.user-history {
+  height: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-title {
+  font-weight: 500;
+  font-size: 30px;
+  text-align: center;
+}
+
+.flex-user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  /* border: 1px solid red; */
+}
+
+.icon {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #1b1e28;
+  border-radius: 50%;
+  color:white;
+  cursor: pointer;
+  position: relative;
+}
+
+.icon:before {
+  content: "+";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  color: white !important;
+}
+
+.icon:hover:before {
+  visibility: visible;
+}
+.icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.3);
+
+}
+
+.user-labels {
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  /* background-color: #0BBF35; */
+  font-size: 10px;
+  cursor: pointer;
+  margin-right: 5px;
+  /* margin-top: 20px; */
+}
+
+.user-history-title {
+  text-align: center;
+  border-bottom: 3px solid #0BBF35;
+  margin-bottom: 15px;
+  display: inline-block;
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.project-link {
+  color: #0BBF35;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.project-link:hover {
+  color: #08f33f;
+}
+
+.user-history-info {
+  margin: 10px 0px;
+}
+
+@media (max-width: 770px) {
+  .stat-container {
+    padding: 0;
+    padding: 60px 15px;
+  }
+
+  .stat-box {
+    width: 100%;
+    /* margin: 0 15px; */
+  }
+
+}

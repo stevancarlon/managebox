@@ -6,6 +6,15 @@
     height: 100%;
     /* border: 1px solid red; */
     width: 100%;
+    scrollbar-color: #474950 #31343D;
+    scrollbar-width: thin;
+    /* scrollbar-: 5px; */
+}
+
+@media (max-width: 440px) {
+    .project-tasks-container {
+        padding: 80px 20px;
+    }
 }
 
 .tasks-header {
@@ -25,6 +34,12 @@
     cursor: pointer;
     font-weight: 100;
     align-self: center;
+    transition: all 0.2s;
+}
+
+.new-button:hover {
+    background-color: #0fdc3f;
+    box-shadow: 0px 2px 12px #0BBF35;
 }
 
 .project-members {
@@ -166,5 +181,35 @@
     font-size: 12px;
     /* border-left: 3px solid white; */
     margin: 10px 0px;
+    margin-right: 5px;
     cursor: pointer;
+}
+
+.project-details {
+    color:rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    margin-bottom: -50px;
+}
+
+.fa-thumbtack-icon {
+    color:#0BBF35;
+    font-size: 25px;
+}
+
+@media (max-width: 770px) {
+    .new-button {
+        align-self: flex-start;
+        font-size: 12px;
+        padding: 5px 10px;
+        /* margin-left: 5px; */
+        margin-top: 5px;
+        font-weight: 700;
+        width: 20%;
+    }
+
+    .project-title {
+        padding-right: 5px;
+        /* border: 1px solid red; */
+        width: 90%;
+    }
 }

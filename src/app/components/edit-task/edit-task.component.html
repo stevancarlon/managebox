@@ -1,0 +1,40 @@
+<div class="modal-background" [class.show]="toggleEditTask" >
+  <form class="new-project" [class.show]="toggleEditTask">
+    <div class="input-flex">
+      <p class="new-project-title">Edit task</p>
+      <div class="title-date-flex">
+        <div class="label-input-flex">
+          <p class="input-label">Title:</p>
+          <input placeholder="Enter the title" name="title"  [(ngModel)]="title" [value]="taskToEdit?.title"/>
+        </div>
+        <div class="label-input-flex">
+          <p class="input-label">Date:</p>
+          <input type="date" placeholder="Select the ending date" name="date" [(ngModel)]="date" [value]="taskToEdit?.date" />
+        </div>
+      </div>
+      <div class="label-input-flex">
+        <p class="input-label">Details:</p>
+        <textarea placeholder="Describe your project" name="details" [(ngModel)]="details" [value]="taskToEdit?.details"></textarea>
+      </div>
+      <div class="label-input-flex">
+        <p class="input-label">Members:</p>
+        <mat-form-field [color]="'primary'">
+          <mat-label>Select members</mat-label>
+          <mat-select multiple [panelClass]="'component-name logger'" name="members" [(ngModel)]="members">
+            <mat-option [value]="''" disabled>---</mat-option>
+            <!-- <mat-option value="Mark">Mark</mat-option>
+            <mat-option value="John">John</mat-option>
+            <mat-option value="Luke">Luke</mat-option>
+            <mat-option value="Peter">Peter</mat-option> -->
+            <mat-option *ngFor="let p_members of project?.members" [value]="p_members">{{ p_members }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="new-project-buttons">
+      <button type="submit" class="create-button" (click)="onSubmit()">Save</button>
+      <button type="reset" class="cancel-button" (click)="toggleForm()">Cancel</button>
+    </div>
+  </form>
+  </div>
+  

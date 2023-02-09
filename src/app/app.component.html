@@ -1,6 +1,6 @@
 <!-- <app-new-project></app-new-project> -->
 <div class="bodyContainer">
-<app-header></app-header>
-<app-projects></app-projects>
+<app-header *ngIf="userService.isLoggedIn$ | async"></app-header>
+<app-projects *ngIf="userService.isLoggedIn$ | async" (onChangeStatus)="updateView()"></app-projects>
 <router-outlet></router-outlet>
 </div>

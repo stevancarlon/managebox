@@ -9,29 +9,32 @@
           </div>
           <div class="label-input-flex">
             <p class="input-label">Date:</p>
-            <input placeholder="Select the ending date" name="date" [(ngModel)]="date"/>
+            <input type="date" placeholder="Select the ending date" name="date" [(ngModel)]="date"/>
           </div>
         </div>
         <div class="label-input-flex">
-          <p class="input-label">Details:</p>
+          <p class="input-label">Details: </p>
           <textarea placeholder="Describe your project" name="details" [(ngModel)]="details"></textarea>
         </div>
         <div class="label-input-flex">
           <p class="input-label">Members:</p>
           <mat-form-field [color]="'primary'">
             <mat-label>Select members</mat-label>
-            <mat-select multiple [panelClass]="'component-name logger'">
+            <mat-select multiple [panelClass]="'component-name logger'" name="members" [(ngModel)]="members">
               <mat-option [value]="''" disabled>---</mat-option>
-              <mat-option value="Mark">Mark</mat-option>
-              <mat-option value="John">John</mat-option>
-              <mat-option value="Luke">Luke</mat-option>
-              <mat-option value="Peter">Peter</mat-option>
+              
+              <mat-option *ngFor="let p_members of project?.members" [value]="p_members">{{ p_members }}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
       <div class="new-project-buttons">
-        <button type="submit" class="create-button">Create</button>
+        <button type="submit" class="create-button" *ngIf="!isLoading">
+          Add task
+        </button>
+        <button class="create-button" *ngIf="isLoading">
+          <mat-progress-spinner mode="indeterminate" class="white-spinner" color="accent"></mat-progress-spinner>
+        </button>
         <button type="reset" class="cancel-button" (click)="toggleForm()">Cancel</button>
       </div>
     </form>

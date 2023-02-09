@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { UiService } from 'src/app/service/ui.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 
 @Component({
@@ -15,6 +17,32 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
   ]
 })
-export class ProjectPlaceholderComponent {
+export class ProjectPlaceholderComponent implements OnInit {
+
+  url!: any
+
+  constructor(private uiService: UiService, private route: ActivatedRoute, private router: Router) {
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.url = event.url;
+        // console.log(this.url)
+        if(this.url === '/') {
+          setTimeout(() => this.uiService.openShowMenu(), 1000)
+          setTimeout(() => this.uiService.openShowProjectList(), 1000)
+        }
+      }
+    });
+
+    
+    
+    
+  }
+
+  ngOnInit(): void {
+    
+  }
+
+  
 
 }

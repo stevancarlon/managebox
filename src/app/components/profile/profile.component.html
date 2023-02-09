@@ -1,0 +1,26 @@
+<div [@fadeInOut] class="stat-container">
+  <div class="flex-user-container">
+    <fa-icon [icon]="faUser" class="icon"></fa-icon>
+    <p class="stat-title">{{ username }}</p>
+    <div>
+      <span class="user-labels">Developer</span>
+      <span class="user-labels">Senior</span>
+    </div>
+  </div>
+  <div class="stat-box">
+    <ng-container *ngIf="user">
+      
+      <div class="user-history">
+        <p style="text-align: center"><span class="user-history-title">User history</span></p>
+        <div *ngFor="let project of user?.projects">
+          <p class="user-history-info">User was added to project <a [routerLink]="['/project/', project.id]" class="project-link">{{ project.title }}</a>.</p>
+          <mat-divider></mat-divider>
+        </div>
+        
+        <p *ngIf="!user.projects || user?.projects.length === 0">
+          User has no projects yet.
+        </p>
+      </div>
+    </ng-container>
+  </div>
+</div>

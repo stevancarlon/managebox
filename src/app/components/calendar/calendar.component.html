@@ -1,6 +1,8 @@
 <div [@fadeInOut] class="stat-container">
-    <p class="stat-title">Calendar</p>
+    <p class="stat-title"><fa-icon [icon]="faCalendar" class="fa-calendar-icon"></fa-icon> Tasks calendar</p>
+    <p class="page-description">Select a task to be redirect to its respective project.</p>
     <div class="stat-box">
-        <p>Calendar will appear here.</p>
+        <mat-progress-spinner mode="indeterminate" *ngIf="loading"></mat-progress-spinner>
+        <full-calendar [@fadeInOut] [options]="calendarOptions" class="calendar-style" *ngIf="!loading"></full-calendar>
     </div>
 </div>

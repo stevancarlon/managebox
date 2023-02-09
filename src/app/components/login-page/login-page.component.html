@@ -1,0 +1,76 @@
+<div class="modal-background show">
+  <form class="new-project" [@fadeInOut]>
+    <div class="login-components-flex">
+      <div class="slide-components">
+        <p [routerLink]="['/login/']" class="selected-component">Login</p>
+        <p [routerLink]="['/register/']">Register</p>
+      </div>
+      <div>
+        <div class="login-page">
+          <img src="../../assets/white_logo_text.png" class="logo-login-page" />
+          <p class="manage-title">
+            Manage your staff projects & tasks efficiently.
+          </p>
+        </div>
+        <div class="login-input-flex">
+          <div class="welcome-title">
+            <h2>Welcome!</h2>
+            <p class="credentials-title">Enter your credentials.</p>
+          </div>
+          <!-- <div> -->
+
+          <!-- <label class="input-label">Username</label> -->
+          <input
+            type="text"
+            placeholder="Username"
+            name="username"
+            autocomplete="off"
+            [(ngModel)]="username"
+          />
+          <!-- <label class="input-label">Password</label> -->
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            autocomplete="off"
+            [(ngModel)]="password"
+          />
+          <button *ngIf="!isLoading" (click)="login()">Login</button>
+          <button *ngIf="isLoading" (click)="login()" class="btn-loading">
+            Loading...
+          </button>
+          <div class="div-create-new-account">
+            <div class="or-flex">
+              <div class="hr-line">
+                <hr />
+              </div>
+              <span class="or-span"> Or</span>
+              <div class="hr-line">
+                <hr />
+              </div>
+            </div>
+            <p class="create-new-account">
+              <a [routerLink]="['/register/']">Create new account</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-icons-margin-bottom">
+        <div class="flex-icons">
+          <!-- <span class="find-me-on">Find me on:</span> -->
+          <a href="https://github.com/stevancarlon" target="_blank"><fa-icon [icon]="faGithub" class="login-icons"></fa-icon></a>
+          <a href="https://www.linkedin.com/in/stevancarlon/" target="_blank"><fa-icon [icon]="faLinkedin" class="login-icons"></fa-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="img-container">
+      <div class="img-asset">
+        <!-- <img src="../../assets/login_asset.png" width="250px"> -->
+        <p></p>
+      </div>
+      <p class="version">
+        v. 1.0.0
+      </p>
+    </div>
+  </form>
+</div>

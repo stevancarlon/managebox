@@ -1,24 +1,34 @@
-<header>
-  <div class="logo-container">
+<!-- <button>toggle</button> -->
+<div class="toggle-header" [@slide]="showMenu ? 'up' : 'down'" >
+  <button (click)="alternateMenu()">
+    <fa-icon [icon]="faBars" ></fa-icon>
+  </button>
+  <img src="../../assets/white_logo_text.png" class="nav-bar-logo">
+</div>
+<header [@slide2]="showMenu ? 'right' : 'left'" >
+  <div class="logo-container" (click)="alternateMenu(); closeProjectList()">
     <img src="assets/logo.svg" class="logo" />
+    <fa-icon [icon]="faArrowLeft" class="leftBarIcon"></fa-icon>
   </div>
   <div class="menu-list">
-    <div class="menu-item" [routerLink]="['/project/']">
-      <fa-icon [icon]="faListCheck" class="menu-item-icon"></fa-icon>
+    <div class="menu-item" (click)="alternateProjectList()" [routerLink]="['/project/']" [class.menu-item-activated]="url === '/project'">
+      <fa-icon [icon]="faListCheck" class="menu-item-icon" ></fa-icon>
     </div>
-    <div class="menu-item" [routerLink]="['/statistics/']">
+    <div class="menu-item" [routerLink]="['/statistics/']" [class.menu-item-activated]="url === '/statistics'" (click)="alternateMenu(); closeProjectList()">
       <fa-icon [icon]="faBarChart" class="menu-item-icon"></fa-icon>
     </div>
-    <div class="menu-item" [routerLink]="['/calendar/']">
+    <div class="menu-item" [routerLink]="['/calendar/']" [class.menu-item-activated]="url === '/calendar'" (click)="alternateMenu(); closeProjectList()">
       <fa-icon [icon]="faCalendarDays" class="menu-item-icon"></fa-icon>
     </div>
-    <div class="menu-item" [routerLink]="['/config/']">
-      <fa-icon [icon]="faGear" class="menu-item-icon"></fa-icon>
-    </div>
   </div>
-  <div class="menu-info" [routerLink]="['/info/']">
-    <div class="menu-info-item">
-      <fa-icon [icon]="faInfoCircle" class="menu-info-icon"></fa-icon>
+  <div class="menu-info" (click)="showMoreDropbox = !showMoreDropbox" >
+    <div class="menu-info-item" >
+      <fa-icon [icon]="faEllipsisH" class="menu-info-icon" ></fa-icon>
+      <div class="more-dropbox" [class.show]="showMoreDropbox" [@fadeInOut]>
+        <p class="more-dropbox-item" [routerLink]="['/profile/']" (click)="alternateMenu(); closeProjectList()">Profile</p>
+        <p class="more-dropbox-item" [routerLink]="['/info/']" (click)="alternateMenu(); closeProjectList()">About</p>
+        <p class="more-dropbox-item" (click)="logout()" (click)="alternateMenu(); closeProjectList()">Log out</p>
+      </div>
     </div>
   </div>
 </header>

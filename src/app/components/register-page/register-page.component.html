@@ -1,0 +1,61 @@
+<div class="modal-background show">
+  <form class="new-project" [@fadeInOut]>
+    <div class="login-components-flex">
+      <div class="slide-components">
+        <p [routerLink]="['/login/']" >Login</p>
+        <p [routerLink]="['/register/']" class="selected-component">Register</p>
+      </div>
+      <div class="login-page">
+        <img src="../../assets/white_logo_text.png" class="logo-login-page" />
+        <p class="manage-title">
+          Manage your staff projects & tasks efficiently.
+        </p>
+      </div>
+      <div class="login-input-flex">
+        <div>
+          <h3 style="text-align: center">Create an account</h3>
+          <!-- <p class="credentials-title">Enter your credentials.</p> -->
+        </div>
+        <!-- <div> -->
+
+        <!-- <label class="input-label">Username</label> -->
+        <input type="text"  name='username' placeholder="Username" autocomplete="off" [(ngModel)]="username"/>
+        <!-- <label class="input-label">Password</label> -->
+        <input type="password"  name='password' placeholder="Password" autocomplete="off" [(ngModel)]="password"/>
+        <input type="password" name='confirm-password' placeholder="Confirm password" autocomplete="off" [(ngModel)]="confirmPass"/>
+        <button (click)="register()" *ngIf="!isLoading">Register</button>
+        <button *ngIf="isLoading">Registering...</button>
+        <div class="div-create-new-account">
+          <div class="or-flex">
+            <div class="hr-line">
+              <hr />
+            </div>
+            <span class="or-span"> Or</span>
+            <div class="hr-line">
+              <hr />
+            </div>
+          </div>
+          <p class="create-new-account">
+            <a [routerLink]="['/login/']">Sign in</a>
+          </p>
+        </div>
+      </div>
+      <div class="flex-icons-margin-bottom">
+        <div class="flex-icons">
+          <!-- <span class="find-me-on">Find me on:</span> -->
+          <a href="https://github.com/stevancarlon" target="_blank"><fa-icon [icon]="faGithub" class="login-icons"></fa-icon></a>
+          <a href="https://www.linkedin.com/in/stevancarlon/" target="_blank"><fa-icon [icon]="faLinkedin" class="login-icons"></fa-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="img-container">
+      <div class="img-asset">
+        <!-- <img src="../../assets/login_asset.png" width="250px"> -->
+        <p></p>
+      </div>
+      <p class="version">
+        v. 1.0.0
+      </p>
+    </div>
+  </form>
+</div>
