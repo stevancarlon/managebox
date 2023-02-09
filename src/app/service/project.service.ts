@@ -15,7 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://192.168.2.110:3000/projects'
+  private apiUrl = 'http://localhost:5000/projects'
 
   constructor(private http:HttpClient) { }
 
