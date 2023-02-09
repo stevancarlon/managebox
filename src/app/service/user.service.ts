@@ -16,11 +16,8 @@ export class UserService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false)
   isLoggedIn$ = this._isLoggedIn$.asObservable()
 
-<<<<<<< HEAD
   private apiUrl = 'http://localhost:5000/users'
-=======
-  private apiUrl = 'https://managebox-fake-server.onrender.com/users'
->>>>>>> bbb115ce1c6fa614a7b660957bd6c48bddbe8732
+
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('username')

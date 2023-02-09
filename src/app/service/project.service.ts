@@ -15,11 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ProjectService {
-<<<<<<< HEAD
+
   private apiUrl = 'http://localhost:5000/projects'
-=======
-  private apiUrl = 'https://managebox-fake-server.onrender.com/projects'
->>>>>>> bbb115ce1c6fa614a7b660957bd6c48bddbe8732
 
   constructor(private http:HttpClient) { }
 
