@@ -54,10 +54,6 @@
               [(ngModel)]="members"
             >
               <mat-option [value]="''" disabled>---</mat-option>
-              <!-- <mat-option value="Mark">Mark</mat-option>
-          <mat-option value="John">John</mat-option>
-          <mat-option value="Luke">Luke</mat-option>
-          <mat-option value="Peter">Peter</mat-option> -->
               <mat-option
                 *ngFor="let user of users"
                 [value]="user.username"

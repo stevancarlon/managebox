@@ -158,7 +158,7 @@
 
 @media (max-width: 770px) {
   .modal-background {
-    z-index: 999999;
+    z-index: 9999;
   }
 
   .new-project {
@@ -168,11 +168,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
   }
 
   .title-date-flex {
     flex-direction: column;
   }
+
+  .label-input-flex {
+    position: relative;
+  }
+
 
 }
 

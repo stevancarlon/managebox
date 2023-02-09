@@ -200,7 +200,7 @@ app-new-project {
 
 
 
-@media (max-width: 440px ){
+@media (max-width: 770px ){
   
   app-projects {
     /* border: 1px solid red; */
@@ -214,6 +214,15 @@ app-new-project {
     height: 100vh;
     /* background-color: #11a434; */
   }
+
+  mat-select {
+    z-index: 999999 !important;
+  }
+
+  .cdk-overlay-container {
+    z-index: 99999;
+  }
+
   
 }
 
