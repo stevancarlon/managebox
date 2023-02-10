@@ -21,13 +21,13 @@
       <fa-icon [icon]="faCalendarDays" class="menu-item-icon"></fa-icon>
     </div>
   </div>
-  <div class="menu-info" (click)="showMoreDropbox = !showMoreDropbox" >
+  <div class="menu-info" (click)="showMoreDropbox = !showMoreDropbox">
     <div class="menu-info-item" >
       <fa-icon [icon]="faEllipsisH" class="menu-info-icon" ></fa-icon>
       <div class="more-dropbox" [class.show]="showMoreDropbox" [@fadeInOut]>
         <p class="more-dropbox-item" [routerLink]="['/profile/']" (click)="alternateMenu(); closeProjectList()">Profile</p>
-        <p class="more-dropbox-item" [routerLink]="['/info/']" (click)="alternateMenu(); closeProjectList()">About</p>
-        <p class="more-dropbox-item" (click)="logout()" (click)="alternateMenu(); closeProjectList()">Log out</p>
+        <p class="more-dropbox-item" [routerLink]="['/info/']" (click)="alternateMenu(); closeProjectList()" >About</p>
+        <p class="more-dropbox-item" (click)="logout()" (click)="alternateMenu(); closeProjectList()"  >Log out</p>
       </div>
     </div>
   </div>

@@ -13,7 +13,7 @@
       <div class="user-history">
         <p style="text-align: center"><span class="user-history-title">User history</span></p>
         <div *ngFor="let project of user?.projects">
-          <p class="user-history-info">User was added to project <a [routerLink]="['/project/', project.id]" class="project-link">{{ project.title }}</a>.</p>
+          <p class="user-history-info">{{ username }} was added to project <a [routerLink]="['/project/', project.id]" class="project-link">{{ project.title }}</a>.</p>
           <mat-divider></mat-divider>
         </div>
         

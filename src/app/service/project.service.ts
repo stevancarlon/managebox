@@ -16,9 +16,22 @@ const httpOptions = {
 })
 export class ProjectService {
 
-  private apiUrl = 'http://localhost:5000/projects'
+  private apiUrl = 'http://192.168.2.110:3000/projects'
+
+  private currentProjects!: any
+  private subjectCurrentProjects = new Subject<any>()
 
   constructor(private http:HttpClient) { }
+
+  listenerProjects(projects: any) {
+    this.currentProjects = projects
+    this.subjectCurrentProjects.next(this.currentProjects)
+    // console.log('open show menu' + this.showMenu)
+  }
+
+  onListenerProjects(): Observable<any> {
+    return this.subjectCurrentProjects.asObservable()
+  }
 
   getProjects(): Observable<Project[]> {
     return this.http.get<Project[]>(this.apiUrl)

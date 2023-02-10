@@ -10,6 +10,7 @@ import { UserProject } from 'src/app/User';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { HostListener } from "@angular/core";
 import { UiService } from 'src/app/service/ui.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-item',
@@ -37,9 +38,9 @@ export class ProjectItemComponent implements OnInit {
   @Output() onUpdateProjectStatus: EventEmitter<any> = new EventEmitter();
   @Output() onEditProject: EventEmitter<any> = new EventEmitter();
   faUser = faUser
-  // notremoved = true
   screenHeight!: number;
   screenWidth!: number;
+  subscription!: Subscription
 
   constructor(
     private router: Router,
@@ -57,23 +58,30 @@ export class ProjectItemComponent implements OnInit {
     getScreenSize(event?: any) {
           this.screenHeight = window.innerHeight;
           this.screenWidth = window.innerWidth;
-          // console.log(this.screenHeight, this.screenWidth);
     }
 
   ngOnInit(): void {
-    // this.projectService.getProjects().subscribe((projects: Project[]) => {
-    //   this.projects = projects
-    // })
-    // console.log(this.projects)
+
   }
 
   ngOnChanges() {
     // console.log('change...')
   }
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: any) {
+    const dropdown = document.querySelector('.dropdown-container');
+    const button = document.querySelector('.dropdown-option');
+    
+    if (!dropdown?.contains(event.target)) {
+
+      this.selectedIndex = -1
+
+    }
+  }
+
   openProjectItem() {
     if (this.screenWidth <= 770) {
-      // console.log('debug')
       this.uiService.closeShowProjectList()
       this.uiService.toggleShowMenu()
     }
@@ -107,7 +115,6 @@ export class ProjectItemComponent implements OnInit {
         return '#91770c';
         case 'Design':
           return '#bf350b';
-      // add more cases as needed
       default:
         return '#0BBF35';
     }
@@ -123,7 +130,6 @@ export class ProjectItemComponent implements OnInit {
         return '1px solid #F4C222';
       case 'Design':
         return '1px solid #bf350b';
-      // add more cases as needed
       default:
         return '1px solid #0BBF35';
     }
@@ -139,21 +145,18 @@ export class ProjectItemComponent implements OnInit {
         return '4px solid #F4C222';
       case 'Design':
         return '4px solid #bf350b';
-      // add more cases as needed
       default:
         return '4px solid #0BBF35';
     }
   }
 
   editProject(project: any) {
-    console.log('edit project');
-
     this.onEditProject.emit(project);
   }
 
   moreFunction(index: any) {
     this.showMoreDropbox = !this.showMoreDropbox;
-    // console.log(index)
+
     this.selectedIndex = this.selectedIndex === index ? -1 : index;
   }
 
@@ -161,11 +164,12 @@ export class ProjectItemComponent implements OnInit {
     this.projectService.deleteProject(id).subscribe();
     this.projectService.getProjects().subscribe((result) => {
       this.onDelete.emit();
+      this.projectService.listenerProjects(result)
     });
     this.router.navigate(['/project/']);
 
     this.userService.getUsers().subscribe((users) => {
-      console.log('Deleting...')
+
       users.map((user) => {
         if (user.projects) {
           let new_projects: UserProject[] = [];
@@ -188,8 +192,8 @@ export class ProjectItemComponent implements OnInit {
   }
 
   updateProjectStatus(id: any) {
-    // this.notremoved = !this.notremoved
+
     this.onUpdateProjectStatus.emit(id);
-    // this.onUpdateProjectStatus.emit(id);
+
   }
 }

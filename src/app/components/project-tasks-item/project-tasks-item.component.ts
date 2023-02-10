@@ -8,6 +8,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UiService } from 'src/app/service/ui.service';
 import { Subscription } from 'rxjs';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { HostListener } from "@angular/core";
+
 
 @Component({
   selector: 'app-project-tasks-item',
@@ -46,6 +48,19 @@ export class ProjectTasksItemComponent implements OnInit {
     })
   }
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: any) {
+    const dropdown = document.getElementById(this.selectedIndex.toString())
+
+
+    if (dropdown?.id === this.selectedIndex.toString()) {
+      if(!dropdown?.contains(event.target)) {
+        this.selectedIndex = -1
+      }
+    }
+    
+  }
+
   deleteTask(task_id: any) {
     // let new_tasks = []
     this.route.params.subscribe(params => {
@@ -67,7 +82,11 @@ export class ProjectTasksItemComponent implements OnInit {
         }
         this.project.tasks = this.new_tasks
         console.log(this.project)
-        this.projectService.updateSingleProject(this.project_id, this.project).subscribe()
+        this.projectService.updateSingleProject(this.project_id, this.project).subscribe(result => {
+          this.projectService.getProjects().subscribe((result) => {
+            this.projectService.listenerProjects(result)
+          });
+        })
         
         this.onDelete.emit(this.project)
       })

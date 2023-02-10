@@ -1,49 +1,94 @@
-<div class="modal-background" [class.show]="showEditProject" >
-    <form class="new-project" [class.show]="showEditProject">
-      <div class="input-flex">
-        <p class="new-project-title">Edit project</p>
-        <div class="title-date-flex">
-          <div class="label-input-flex">
-            <p class="input-label">Title:</p>
-            <input placeholder="Enter the title" name="title" [(ngModel)]="title" value={{projectToEdit?.title}}/>
-          </div>
-          <div class="label-input-flex">
-            <p class="input-label">Date:</p>
-            <input tyep="date" placeholder="Select the ending date" name="date" [(ngModel)]="date" value={{projectToEdit?.date}}/>
-          </div>
+<div class="modal-background" [class.show]="showEditProject">
+  <form class="new-project" [class.show]="showEditProject" (ngSubmit)="onSubmit()">
+    <div class="input-flex">
+      <p class="new-project-title">Edit project</p>
+      <div class="title-date-flex">
+        <div class="label-input-flex">
+          <p class="input-label">Title:</p>
+          <input
+            placeholder="Enter the title"
+            name="title"
+            [(ngModel)]="title"
+            value="{{ projectToEdit?.title }}"
+          />
         </div>
-        <div class="label-input-flex select-category">
-          <p class="input-label">Category:</p>
-          <mat-form-field>
-            <mat-label>Category</mat-label>
-            <mat-select [panelClass]="'component-name logger'" name="category" [(ngModel)]="category" value={{projectToEdit?.category}}>
-              <mat-option [value]="''" disabled>---</mat-option>
-              <mat-option *ngFor="let p_members of projectToEdit?.members" [value]="p_members">{{ p_members }}</mat-option>
-            </mat-select>
-          </mat-form-field>
+        <div class="label-input-flex">
+          <p class="input-label">Date:</p>
+          <input
+            type="date"
+            placeholder="Select the ending date"
+            name="date"
+            [(ngModel)]="date"
+            value="{{ projectToEdit?.date }}"
+          />
+        </div>
+      </div>
+      <div class="label-input-flex select-category">
+        <p class="input-label">Category:</p>
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <mat-select
+            [panelClass]="'component-name logger'"
+            name="category"
+            [(ngModel)]="category"
+          >
+            <mat-option [value]="''" disabled>---</mat-option>
+            <mat-option value="Software">Software</mat-option>
+            <mat-option value="Design">Design</mat-option>
+            <mat-option value="Administration">Administration</mat-option>
+            <mat-option value="Marketing">Marketing</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="label-input-flex">
+        <mat-form-field>
+          <mat-label>Members</mat-label>
           
-        </div>
-        <div class="label-input-flex">
-          <mat-form-field>
-            <mat-label>Members</mat-label>
-            <mat-select multiple [panelClass]="'component-name logger'" name="members" [(ngModel)]="members">
+            <mat-select
+              multiple
+              [panelClass]="'component-name logger'"
+              name="members"
+              [(ngModel)]="members"
+            >
               <mat-option [value]="''" disabled>---</mat-option>
-              <mat-option value="Mark">Mark</mat-option>
-              <mat-option value="John">John</mat-option>
-              <mat-option value="Luke">Luke</mat-option>
-              <mat-option value="Peter">Peter</mat-option>
+              <mat-option
+                *ngFor="let user of users"
+                [value]="user.username"
+                >{{ user.username }}</mat-option
+              >
             </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="label-input-flex">
-          <p class="input-label">Description:</p>
-          <textarea placeholder="Describe your project" name="description" [(ngModel)]="description" value={{projectToEdit?.description}}></textarea>
-        </div>
+          
+        </mat-form-field>
       </div>
-      <div class="new-project-buttons">
-        <button type="submit" class="create-button" (click)="toggleForm(); onSubmit()">Save</button>
-        <button type="reset" class="cancel-button" (click)="toggleForm()">Cancel</button>
+      <div class="label-input-flex">
+        <p class="input-label">Description:</p>
+        <textarea
+          placeholder="Describe your project"
+          name="description"
+          [(ngModel)]="description"
+          value="{{ projectToEdit?.description }}"
+        ></textarea>
       </div>
-    </form>
     </div>
-    
+    <div class="new-project-buttons">
+      <button
+        type="submit"
+        class="create-button"
+        *ngIf="!isLoading"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        class="create-button"
+        (click)="toggleForm()"
+        *ngIf="isLoading"
+      >
+        Saving...
+      </button>
+      <button type="reset" class="cancel-button" (click)="toggleForm()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

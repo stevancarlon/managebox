@@ -1,9 +1,9 @@
 {
   "projects": [
     {
-      "title": "Create database",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "date": "2023-02-08",
+      "title": "New project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "date": "2023-02-11",
       "members": [
         "username"
       ],
@@ -12,30 +12,30 @@
       "id": 1,
       "tasks": [
         {
-          "id": 0,
-          "title": "Configure server",
-          "date": "2023-02-08",
-          "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-          "members": [
-            "username"
-          ],
-          "status": false
-        },
-        {
-          "id": 1,
-          "title": "Table schemes",
-          "date": "2023-02-08",
-          "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "id": 3,
+          "title": "dfsdf",
+          "date": "2023-02-10",
+          "details": "sdfdsf",
           "members": [
             "username"
           ],
           "status": true
         },
         {
-          "id": 2,
-          "title": "Data encryption",
-          "date": "2023-02-09",
-          "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+          "id": 4,
+          "title": "new task",
+          "date": "2023-02-07",
+          "details": "asdsad",
+          "members": [
+            "username"
+          ],
+          "status": true
+        },
+        {
+          "id": 5,
+          "title": "New task",
+          "date": "2023-02-13",
+          "details": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
           "members": [
             "username"
           ],
@@ -45,26 +45,36 @@
     },
     {
       "title": "New project",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "date": "2023-02-07",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "date": "2023-02-17",
       "members": [
         "username"
       ],
       "status": true,
-      "category": "Administration",
+      "category": "Software",
       "id": 2
     },
     {
-      "title": "Front end",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      "date": "2023-02-10",
+      "title": "New project",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "date": "2023-02-16",
       "members": [
-        "username",
         "socrates"
       ],
       "status": true,
       "category": "Software",
-      "id": 5
+      "id": 3
+    },
+    {
+      "title": "New project",
+      "description": "...",
+      "date": "2023-02-18",
+      "members": [
+        "username"
+      ],
+      "status": true,
+      "category": "Marketing",
+      "id": 4
     }
   ],
   "users": [
@@ -75,7 +85,17 @@
       "projects": [
         {
           "id": 1,
-          "title": "Create database",
+          "title": "New project",
+          "status": true
+        },
+        {
+          "id": 2,
+          "title": "New project",
+          "status": true
+        },
+        {
+          "id": 4,
+          "title": "New project",
           "status": true
         }
       ]
@@ -92,8 +112,8 @@
       "id": 3,
       "projects": [
         {
-          "id": 5,
-          "title": "Front end",
+          "id": 3,
+          "title": "New project",
           "status": true
         }
       ]

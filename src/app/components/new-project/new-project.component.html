@@ -2,7 +2,7 @@
   <form
     class="new-project"
     [class.show]="showAddProject"
-    (ngSubmit)="onSubmit()"
+    (ngSubmit)="onSubmit(); "
   >
     <div class="input-flex">
       <p class="new-project-title">Create new project</p>
@@ -22,6 +22,7 @@
             placeholder="Select the ending date"
             name="date"
             [(ngModel)]="date"
+            class="date-input-index"
           />
         </div>
       </div>
@@ -74,11 +75,11 @@
       </div>
     </div>
     <div class="new-project-buttons">
-      <button *ngIf="!newProjectLoading" type="submit" class="create-button" (click)="toggleForm()">
+      <button *ngIf="!newProjectLoading" type="submit" class="create-button">
         Create
       </button>
-      <button *ngIf="newProjectLoading" type="submit" class="create-button" (click)="toggleForm()">
-        <mat-progress-spinner mode="indeterminate" class="white-spinner" color="accent"></mat-progress-spinner>
+      <button *ngIf="newProjectLoading" type="submit" class="create-button">
+        Saving...
       </button>
       <button type="reset" class="cancel-button" (click)="toggleForm()">
         Cancel

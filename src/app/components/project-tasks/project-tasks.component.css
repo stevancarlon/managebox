@@ -11,7 +11,14 @@
     /* scrollbar-: 5px; */
 }
 
-@media (max-width: 440px) {
+/* .position-fixed {
+    
+    color: red;
+    position:fixed;
+    left: 0;
+} */
+
+@media (max-width: 770px) {
     .project-tasks-container {
         padding: 80px 20px;
     }

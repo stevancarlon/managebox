@@ -36,7 +36,7 @@ export class CalendarComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private router: Router) { 
     // console.log('constructor')
-    console.log(router)
+    // console.log(router)
    }
 
    handleDateClick(event: any) {
@@ -78,6 +78,9 @@ export class CalendarComponent implements OnInit {
         }
       })
       
+      console.log('Tasks calendar')
+      console.log(projects)
+      console.log(this.events)
       this.loading = false
       
 

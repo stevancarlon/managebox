@@ -16,7 +16,7 @@ export class UserService {
   private _isLoggedIn$ = new BehaviorSubject<boolean>(false)
   isLoggedIn$ = this._isLoggedIn$.asObservable()
 
-  private apiUrl = 'http://localhost:5000/users'
+  private apiUrl = 'http://192.168.2.110:3000/users'
 
 
   constructor(private http: HttpClient) {

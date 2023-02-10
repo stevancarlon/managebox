@@ -1,12 +1,12 @@
 <div class="task-container">
   <div class="task-date">
-    <p class="icon-date" title="Expiring date"><fa-icon [icon]="faClock"></fa-icon>{{ task.date }}</p>
-    <div class="more-icon-container" (click)="moreFunction(i)">
+    <p class="icon-date" title="Expiring date">
+      <fa-icon [icon]="faClock"></fa-icon>{{ task.date }}
+    </p>
+    <div class="more-icon-container-2" (click)="moreFunction(i)" [id]="i">
       <fa-icon [icon]="faEllipsisV" class="more-icon"></fa-icon>
-      <div class="dropdown-container" [class.show]="selectedIndex === i">
-        <div class="dropdown-option" (click)="deleteTask(task.id)">
-          Delete
-        </div>
+      <div class="dropdown-container-2" [class.show]="selectedIndex === i">
+        <div class="dropdown-option" (click)="deleteTask(task.id)">Delete</div>
         <div class="dropdown-option" (click)="toggleForm()">Edit</div>
         <div class="dropdown-option" (click)="updateTaskStatus(task.id)">
           {{ task.status ? "Deliver" : "Reactivate" }}
@@ -25,9 +25,15 @@
   <div class="members-flex">
     <!-- <div class="member-icon">PY</div>
     <div class="member-icon">LP</div> -->
-    <div class="member-icon" *ngFor="let member of task.members" [title]="member"><fa-icon [icon]="faUser"></fa-icon></div>
+    <div
+      class="member-icon"
+      *ngFor="let member of task.members"
+      [title]="member"
+    >
+      <fa-icon [icon]="faUser"></fa-icon>
+    </div>
     <div class="add-member" (click)="triggerAddMember()">+</div>
-    <div class="modal-background"[class.show]="toggleAddMember">
+    <div class="modal-background" [class.show]="toggleAddMember">
       <form class="new-project" [class.show]="toggleAddMember">
         <div class="input-flex">
           <p class="new-project-title">Add member</p>
@@ -35,22 +41,39 @@
             <p class="input-label">Members:</p>
             <mat-form-field [color]="'primary'">
               <mat-label>Select members</mat-label>
-              
-              <mat-select multiple [panelClass]="'component-name logger'" name="members" [(ngModel)]="task.members">
+
+              <mat-select
+                multiple
+                [panelClass]="'component-name logger'"
+                name="members"
+                [(ngModel)]="task.members"
+              >
                 <mat-option [value]="''" disabled>---</mat-option>
-                <mat-option *ngFor="let p_member of project.members" [value]="p_member">{{ p_member }}</mat-option>
+                <mat-option
+                  *ngFor="let p_member of project.members"
+                  [value]="p_member"
+                  >{{ p_member }}</mat-option
+                >
               </mat-select>
             </mat-form-field>
           </div>
         </div>
         <div class="new-project-buttons">
-          <button type="submit" class="create-button" (click)="addMember()">Save</button>
-          <button type="button" class="cancel-button" (click)="triggerAddMember()">Cancel</button>
+          <button type="submit" class="create-button" (click)="addMember()">
+            Save
+          </button>
+          <button
+            type="button"
+            class="cancel-button"
+            (click)="triggerAddMember()"
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>
   </div>
-  <p class="task-details">Details:  </p>
+  <p class="task-details">Details:</p>
   <p class="task-details-content">
     {{ task.details }}
   </p>

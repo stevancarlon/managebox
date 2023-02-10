@@ -10,6 +10,7 @@ import { UiService } from 'src/app/service/ui.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/service/project.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-task',
@@ -32,12 +33,14 @@ export class EditTaskComponent implements OnInit {
   tasks!: any;
   @Input() taskToEdit!: any;
   showEditTask: boolean = false;
+  isLoading: boolean = false;
 
   constructor(
     private uiService: UiService,
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toastr: ToastrService
   ) {
     this.subscription = this.uiService
       .onToggleEditTask()
@@ -49,10 +52,9 @@ export class EditTaskComponent implements OnInit {
   }
 
   ngOnInit() {
-    // get URL id
     this.route.params.subscribe((params) => {
       this.projectId = params['id'];
-      // get project and its tasks
+
       this.projectService
         .getSingleProject(this.projectId)
         .subscribe((project) => {
@@ -64,45 +66,54 @@ export class EditTaskComponent implements OnInit {
 
   toggleForm() {
     this.uiService.toggleEditTask();
-    // console.log(this.taskToEdit)
     this.taskToEdit = null;
   }
 
   onSubmit() {
-    
-    console.log('project id' + this.projectId)
-    console.log('task id' + this.taskToEdit.id)
+    this.isLoading = true;
 
     const newTask = {
       id: this.taskToEdit.id,
       title: this.title ? this.title : this.taskToEdit.title,
       date: this.date ? this.date : this.taskToEdit.date,
       details: this.details ? this.details : this.taskToEdit.details,
-      members: this.members
+      members: this.members,
+    };
+
+    if (
+      !newTask.title ||
+      !newTask.date ||
+      !newTask.details ||
+      !newTask.members
+    ) {
+      this.toastr.error('You must fill all the fields', 'Error');
+      this.isLoading = false;
+    } else {
+      let newTasks: any[] = [];
+      let newProject;
+
+      this.projectService
+        .getSingleProject(this.projectId)
+        .subscribe((project) => {
+          newProject = project;
+          this.project.tasks.map((task: any) => {
+            if (task.id === newTask.id) {
+              newTasks.push(newTask);
+            } else {
+              newTasks.push(task);
+            }
+          });
+          // console.log(newTasks)
+          newProject.tasks = newTasks;
+          console.log(newProject);
+          this.projectService
+            .updateSingleProject(this.projectId, newProject)
+            .subscribe((result) => {
+              this.toggleForm();
+              this.onEditTask.emit(result);
+              this.isLoading = false;
+            });
+        });
     }
-
-    let newTasks: any[] = []
-    let newProject
-
-    this.projectService.getSingleProject(this.projectId).subscribe(project => {
-      newProject = project
-      this.project.tasks.map((task: any) => {
-        if (task.id === newTask.id) {
-          newTasks.push(newTask)
-        } else {
-          newTasks.push(task)
-        }
-      })
-      // console.log(newTasks)
-      newProject.tasks = newTasks
-      console.log(newProject)
-      this.projectService.updateSingleProject(this.projectId, newProject).subscribe(result => {
-        this.toggleForm()
-        this.onEditTask.emit(result)
-      })
-    })
-
-    
-
   }
 }

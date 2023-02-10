@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from 'src/app/service/project.service';
 import { UserService } from 'src/app/service/user.service';
+import { FaLayersTextComponent } from '@fortawesome/angular-fontawesome';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-task',
@@ -28,7 +30,8 @@ export class AddTaskComponent implements OnInit {
     private uiService: UiService,
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) {
     this.subscription = this.uiService
       .onToggleAddTask()
@@ -62,35 +65,47 @@ export class AddTaskComponent implements OnInit {
     this.projectService.getSingleProject(this.projectId).subscribe(project => {
       this.project = project
 
-      console.log(this.members)
-
-      const task = {
-        id: !this.project.tasks || this.project.tasks?.length === 0 ? 0 : this.project.tasks.slice(-1)[0].id + 1,
-        title: this.title,
-        date: this.date,
-        details: this.details,
-        members: this.members,
-        status: true
-      }
-  
-      if (!this.project.tasks) {
-        this.project.tasks = [task]
+      if(!this.title || !this.date || !this.details || !this.members) {
+        this.isLoading = false
+        this.toastr.error('You must fill all the fields.', 'Error!')
       } else {
-        this.project.tasks.push(task)
+
+        const task = {
+          id: !this.project.tasks || this.project.tasks?.length === 0 ? 0 : this.project.tasks.slice(-1)[0].id + 1,
+          title: this.title,
+          date: this.date,
+          details: this.details,
+          members: this.members,
+          status: true
+        }
+    
+        if (!this.project.tasks) {
+          this.project.tasks = [task]
+        } else {
+          this.project.tasks.push(task)
+        }
+    
+        console.log(this.project);
+        // Save it to the database
+        this.projectService.updateSingleProject(this.projectId, this.project).subscribe((result) => {
+          this.tasks = result.tasks
+          this.onAddTask.emit(result.tasks)
+          this.projectService.getProjects().subscribe((result) => {
+            this.projectService.listenerProjects(result)
+          });
+        })
+        this.toggleForm();
+        this.isLoading = false
+    
+        this.title = ''
+        this.date = ''
+        this.details = ''
+
+        
+
       }
-  
-      console.log(this.project);
-      // Save it to the database
-      this.projectService.updateSingleProject(this.projectId, this.project).subscribe((result) => {
-        this.tasks = result.tasks
-        this.onAddTask.emit(result.tasks)
-      })
-      this.toggleForm();
-      this.isLoading = false
-  
-      this.title = ''
-      this.date = ''
-      this.details = ''
+
+      
 
     })
   }

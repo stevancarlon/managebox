@@ -6,6 +6,7 @@
   [showEditProject]="showEditProject"
   [projectToEdit]="projectToEdit"
   (onToggle)="editProject($event)"
+  (onUpdateCategories)="updateCategories()"
 ></app-edit-project>
 <div class="projects-container" [@slide2]="showProjectList ? 'right' : 'left'">
   <form class="search-container">

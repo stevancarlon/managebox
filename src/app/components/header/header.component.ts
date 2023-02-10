@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  UrlSegment,
+} from '@angular/router';
 import { faCalendarDays } from '@fortawesome/free-regular-svg-icons';
 import {
   faBarChart,
@@ -48,7 +53,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
   ],
 })
 export class HeaderComponent implements OnInit {
-  faArrowLeft = faArrowLeft
+  faArrowLeft = faArrowLeft;
   faBars = faBars;
   faCalendarDays = faCalendarDays;
   faBarChart = faBarChart;
@@ -69,7 +74,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private uiService: UiService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
   ) {
     // console.log('header')
     this.subscription = this.uiService
@@ -79,11 +84,10 @@ export class HeaderComponent implements OnInit {
     if (this.screenWidth > 770) {
       this.showMenu = true;
     }
-    
   }
 
   ngOnInit() {
-    this.router.events.subscribe(event => {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.url = event.url;
         // console.log(this.url)
@@ -91,17 +95,24 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: any) {
+    const dropdown = document.querySelector('.more-dropbox');
+    const button = document.querySelector('.menu-info');
+    const option = document.querySelector('.more-dropbox-item');
+    
+    if (!dropdown?.contains(event.target) && !button?.contains(event.target)) {
+
+      this.showMoreDropbox = false
+      
+    }
+  }
+
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-    // console.log(this.screenHeight, this.screenWidth);
   }
-
-  // isActive(path: string): boolean {
-  //   return this.router.isActive(this.router.createUrlTree([path]), true);
-  // }
-  
 
   logout() {
     this.userService.logout();
@@ -112,7 +123,6 @@ export class HeaderComponent implements OnInit {
     if (this.screenWidth <= 770) {
       this.uiService.toggleShowMenu();
     }
-    // console.log(this.showMenu)
   }
 
   alternateProjectList() {

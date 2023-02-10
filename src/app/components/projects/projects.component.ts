@@ -80,6 +80,7 @@ export class ProjectsComponent implements OnInit {
   color = '#fff'
   search: string = ''
   subscription!: Subscription;
+  subscription2!: Subscription;
   showProjectList!: boolean
   screenHeight!: number;
   screenWidth!: number;
@@ -92,13 +93,18 @@ export class ProjectsComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
-    // console.log('projects')
+
     this.subscription = this.uiService.onToggleShowProjectList().subscribe(value => this.showProjectList = value)
     this.getScreenSize();
 
     if (this.screenWidth > 770) {
       this.showProjectList = true
     }
+
+    this.subscription2 = this.projectService.onListenerProjects().subscribe(projects => {
+      this.projects = projects
+    })
+
   }
 
   private subject = new Subject<any>();
@@ -108,7 +114,6 @@ export class ProjectsComponent implements OnInit {
     getScreenSize(event?: any) {
           this.screenHeight = window.innerHeight;
           this.screenWidth = window.innerWidth;
-          console.log(this.screenHeight, this.screenWidth);
           if(this.screenWidth >= 770) {
             this.uiService.openShowProjectList()
             this.uiService.openShowMenu()
@@ -170,6 +175,18 @@ export class ProjectsComponent implements OnInit {
     this.projectToEdit = project;
   }
 
+  updateCategories() {
+    let new_categories: any = []
+    this.projects.map(project => {
+      if(!new_categories.includes(project.category)) {
+        new_categories.push(project.category)
+      }
+    })
+
+    this.categories_list = new_categories
+
+  }
+
   toggleForm() {
     this.uiService.toggleAddProject();
   }
@@ -177,7 +194,6 @@ export class ProjectsComponent implements OnInit {
   addProject(project: Project) {
     this.newProjectLoading = true
     this.projectService.addProject(project).subscribe((task) => {
-      // this.projects.push(project)
 
       if (!this.categories_list.includes(project.category)) {
         this.categories_list.push(project.category);
@@ -190,7 +206,6 @@ export class ProjectsComponent implements OnInit {
 
       this.userService.getUsers().subscribe((users) => {
         users.map((user) => {
-          // console.log(task.id)
           if (project.members.includes(user.username)) {
             const project_user = {
               id: task.id,
@@ -285,7 +300,7 @@ export class ProjectsComponent implements OnInit {
 
     this.selected = label;
     if (label === 'all') {
-      console.log(label);
+      // console.log(label);
 
       this.projectService.getProjects().subscribe((projects) => {
         this.projects = [];
@@ -300,7 +315,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     if (label === 'in-progress') {
-      console.log(label);
+      // console.log(label);
 
       this.projects = [];
       this.projectService.getProjects().subscribe((projects) => {
@@ -317,7 +332,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     if (label === 'delivered') {
-      console.log(label);
+      // console.log(label);
       this.projects = [];
       this.projectService.getProjects().subscribe((projects) => {
         this.projects = projects.filter((project) => {

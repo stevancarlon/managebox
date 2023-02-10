@@ -1,5 +1,5 @@
 <div class="modal-background" [class.show]="toggleEditTask" >
-  <form class="new-project" [class.show]="toggleEditTask">
+  <form class="new-project" [class.show]="toggleEditTask" (ngSubmit)="onSubmit()">
     <div class="input-flex">
       <p class="new-project-title">Edit task</p>
       <div class="title-date-flex">
@@ -22,17 +22,14 @@
           <mat-label>Select members</mat-label>
           <mat-select multiple [panelClass]="'component-name logger'" name="members" [(ngModel)]="members">
             <mat-option [value]="''" disabled>---</mat-option>
-            <!-- <mat-option value="Mark">Mark</mat-option>
-            <mat-option value="John">John</mat-option>
-            <mat-option value="Luke">Luke</mat-option>
-            <mat-option value="Peter">Peter</mat-option> -->
             <mat-option *ngFor="let p_members of project?.members" [value]="p_members">{{ p_members }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
     </div>
     <div class="new-project-buttons">
-      <button type="submit" class="create-button" (click)="onSubmit()">Save</button>
+      <button type="submit" class="create-button" *ngIf="!isLoading">Save</button>
+      <button type="button" class="create-button" *ngIf="isLoading">Saving...</button>
       <button type="reset" class="cancel-button" (click)="toggleForm()">Cancel</button>
     </div>
   </form>
