@@ -16,7 +16,7 @@ const httpOptions = {
 })
 export class ProjectService {
 
-  private apiUrl = 'http://192.168.2.110:3000/projects'
+  private apiUrl = 'https://managebox-fake-server.onrender.com/projects'
 
   private currentProjects!: any
   private subjectCurrentProjects = new Subject<any>()
